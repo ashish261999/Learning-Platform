@@ -36,13 +36,13 @@ const Login = () => {
     }
   }
 
-  // To get data 
+  // To get data of signup and login
 
   const handleRegistration= (type)=>{
 
     const inputData= type === "signup" ? signupInput: loginInput;
     console.log(inputData);
-    // console.log(loginInput);
+
   }
 
 

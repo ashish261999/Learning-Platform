@@ -1,20 +1,29 @@
-// app.js
 const express = require('express');
 const connectDb = require('./database/bd');
+const userroute = require("./routes/user.route");
+const cookieParser = require('cookie-parser');
+const cors= require("cors");
 require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT;
 
+
 connectDb();
 
 // Middleware to parse JSON
 app.use(express.json());
+app.use(cookieParser());
+app.use(cors({
+  origin:"http://localhost:8080",
+  credentials:true
+}));
 
-// Default route
-app.get('/', (req, res) => {
-  res.send('Hello Ashish! Your server is up and running 🚀');
-});
+
+
+
+app.use("/api/user" ,userroute);
+
 
 // Start the server
 app.listen(PORT, () => {

@@ -24,9 +24,9 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 
-
 import { FaBars } from "react-icons/fa";
 import { Separator } from "@radix-ui/react-dropdown-menu";
+import { Link } from "react-router-dom";
 
 export default function NavBar() {
   const user = true;
@@ -50,11 +50,11 @@ export default function NavBar() {
                   <AvatarFallback>CN</AvatarFallback>
                 </Avatar>
               </DropdownMenuTrigger>
-              <DropdownMenuContent>
+              <DropdownMenuContent className="bg-white dark:bg-gray-800 text-black dark:text-white">
                 <DropdownMenuLabel>My Account</DropdownMenuLabel>
                 <DropdownMenuSeparator />
-                <DropdownMenuItem>My Learning</DropdownMenuItem>
-                <DropdownMenuItem>Edit Profile</DropdownMenuItem>
+                <DropdownMenuItem><Link to="/myLearning">My Learning</Link></DropdownMenuItem>
+                <DropdownMenuItem> <Link to="/profile" >Edit Profile</Link></DropdownMenuItem>
                 <DropdownMenuSeparator />
                 <DropdownMenuItem>Log out</DropdownMenuItem>
                 <DropdownMenuItem>Dashboard</DropdownMenuItem>
@@ -77,7 +77,6 @@ export default function NavBar() {
   );
 }
 
-
 const MobileNavBar = () => {
   const role = "instructor";
 
@@ -85,31 +84,39 @@ const MobileNavBar = () => {
     <Sheet>
       <SheetTrigger
         size="icon"
-        className="rounded-full bg-gray-200 hover:bg-gray-300"
+        className="rounded-full bg-gray-200 hover:bg-gray-300 dark:bg-gray-700 dark:hover:bg-gray-600"
       >
         <FaBars />
       </SheetTrigger>
 
-      <SheetContent className="flex flex-col bg-white text-black p-6 space-y-5 rounded-lg shadow-lg w-full max-w-xs mx-auto">
+      <SheetContent className="flex flex-col bg-white dark:bg-gray-800 text-black dark:text-white p-6 space-y-5 rounded-lg shadow-lg w-full max-w-xs mx-auto">
         {/* Header: Logo + Theme Toggle with top margin */}
         <div className="flex items-center justify-between mb-4 mt-6">
-          <SheetTitle className="text-2xl font-bold">E-Learning</SheetTitle>
+          <SheetTitle className="text-2xl font-bold text-black dark:text-white">
+            E-Learning
+          </SheetTitle>
           <ModeToggle />
         </div>
 
         {/* Menu Items */}
         <nav className="flex flex-col space-y-4">
-          <span className="text-base cursor-pointer hover:underline">My Learning</span>
-          <span className="text-base cursor-pointer hover:underline">Edit Profile</span>
-          <span className="text-base cursor-pointer hover:underline">Log Out</span>
+          <span className="text-base cursor-pointer hover:underline text-black dark:text-white">
+            My Learning
+          </span>
+          <span className="text-base cursor-pointer hover:underline text-black dark:text-white">
+            Edit Profile
+          </span>
+          <span className="text-base cursor-pointer hover:underline text-black dark:text-white">
+            Log Out
+          </span>
 
           {/* Instructor Save Button */}
           {role === "instructor" && (
-            <Button 
-              className="w-full mt-4 bg-black text-white hover:bg-gray-900 rounded-lg py-2"
+            <Button
+              className="w-full mt-4 bg-black text-white hover:bg-gray-900 dark:hover:bg-gray-600 rounded-lg py-2"
               type="submit"
             >
-             Dashboard
+              Dashboard
             </Button>
           )}
         </nav>
@@ -117,7 +124,3 @@ const MobileNavBar = () => {
     </Sheet>
   );
 };
-
-
-
-

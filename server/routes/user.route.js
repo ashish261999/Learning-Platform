@@ -5,6 +5,6 @@ const {signUp, logIn}= require("../controllers/user.controller");
 const router = express.Router();
 
 router.post('/signup', signUp);
-router.get('/login', logIn);
+router.post('/login', logIn);
 
 module.exports = router;

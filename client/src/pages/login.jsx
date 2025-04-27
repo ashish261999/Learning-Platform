@@ -17,6 +17,7 @@ import {
 import { Loader2 } from "lucide-react";
 // import { sign } from "crypto";
 import { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { toast } from "sonner";
 
 const Login = () => {
@@ -79,6 +80,7 @@ const Login = () => {
     }
     if(loginIsSuccess && loginData){
       toast.success(loginData.message || "Login successfully...")
+      navigate("/");
       }
       if(loginError){
         toast.error(loginError.message || "Login failed...")
@@ -92,8 +94,12 @@ const Login = () => {
     signupError,
   ]);
 
+
+  const navigate = useNavigate();
+
+
   return (
-    <div className="flex items-center w-full justify-center">
+    <div className="flex items-center w-full justify-center mt-21">
       <Tabs defaultValue="signup" className="w-[400px]">
         <TabsList className="grid w-full grid-cols-2">
           <TabsTrigger value="signup">Signup</TabsTrigger>
@@ -205,7 +211,7 @@ const Login = () => {
               <Button
                 disabled={loginIsLoading}
                 onClick={() => {
-                  handleRegistration("signup");
+                  handleRegistration("login");
                 }}
               >
                 {loginIsLoading ? (
